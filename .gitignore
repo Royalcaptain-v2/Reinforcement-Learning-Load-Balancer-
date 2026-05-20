@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+uvicorn.out
+uvicorn.err
+.frontend_port
+.pytest_cache/
+.mypy_cache/

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reinforcement Learning Load Balancer</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+
+<body>
+  <!-- Intro page: fixed landing screen shown before the simulation console. -->
+  <main class="intro-page">
+    <section class="intro-hero" aria-label="Reinforcement Learning Load Balancer introduction">
+      <div class="grain-layer"></div>
+      <div class="scan-layer"></div>
+
+      <div class="crosshair crosshair-one">+</div>
+      <div class="crosshair crosshair-two">+</div>
+      <div class="crosshair crosshair-three">+</div>
+
+      <div class="orbit orbit-one"></div>
+      <div class="orbit orbit-two"></div>
+
+      <section class="intro-copy">
+        <h1>
+          <span class="title-line title-line-small">Reinforcement Learning</span>
+          <span class="title-line title-line-large">Load Balancer</span>
+        </h1>
+        <p class="intro-text">
+          This project simulates intelligent server traffic distribution using reinforcement
+          learning and compares its routing performance with classic load-balancing algorithms.
+        </p>
+        <button class="enter-button" type="button">Enter Simulation</button>
+      </section>
+    </section>
+  </main>
+
+  <!-- Simulation page: hidden until the user clicks Enter Simulation. -->
+  <section id="simulationPage" class="simulation-page hidden" aria-label="Load balancer simulation interface">
+    <div class="sim-shell">
+      <header class="sim-header">
+        <div>
+          <span class="sim-eyebrow">Simulation Control</span>
+          <h2>Algorithm Performance Console</h2>
+        </div>
+        <button id="runSimulationButton" class="run-button" type="button">Run Simulation</button>
+      </header>
+
+      <section class="control-strip">
+        <div class="seed-control">
+          <label for="seedSlider">Traffic Seed</label>
+          <div class="range-row">
+            <input id="seedSlider" type="range" min="0" max="999" value="42">
+            <output id="seedValue">42</output>
+          </div>
+        </div>
+
+        <div id="serverControlGrid" class="server-control-grid"></div>
+      </section>
+
+      <section id="resultInsight" class="result-insight">
+        Configure traffic and server timing, then run a simulation.
+      </section>
+
+      <section id="metricsGrid" class="metrics-grid"></section>
+
+      <section class="load-section">
+        <div class="section-heading">
+          <span>Server Traffic Distribution</span>
+          <strong>Requests routed per algorithm</strong>
+        </div>
+        <div id="serverLoadGrid" class="server-load-grid"></div>
+      </section>
+
+      <section class="decision-section">
+        <div class="section-heading">
+          <span>Decision Trace</span>
+          <strong>Request-by-request routing</strong>
+        </div>
+        <div id="decisionTabs" class="decision-tabs"></div>
+        <div class="decision-table-wrap">
+          <table class="decision-table">
+            <thead>
+              <tr>
+                <th>Request</th>
+                <th>Arrival</th>
+                <th>Server</th>
+                <th>Response Time</th>
+                <th>Busy Till</th>
+              </tr>
+            </thead>
+            <tbody id="decisionTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </section>
+
+  <script src="/static/app.js"></script>
+</body>
+
+</html>
