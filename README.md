@@ -53,11 +53,4 @@ The trained model is saved to `models/ppo_load_balancer.zip`.
 python scripts/evaluate_ppo.py
 ```
 
-## Deploy On Render
 
-Render uses `render.yaml`:
-
-```text
-Build Command: pip install -r requirements.txt
-Start Command: python -m uvicorn app.main:app --host 0.0.0.0 --port $PORT
-```
