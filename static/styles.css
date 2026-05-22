@@ -100,13 +100,11 @@ button {
 
 .scan-layer {
   opacity: 0.2;
-  background: repeating-linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.18) 0,
-    rgba(255, 255, 255, 0.18) 1px,
-    transparent 2px,
-    transparent 5px
-  );
+  background: repeating-linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.18) 0,
+      rgba(255, 255, 255, 0.18) 1px,
+      transparent 2px,
+      transparent 5px);
 }
 
 /* Small decorative marks on the intro page. */
@@ -311,7 +309,7 @@ body.simulation-active .intro-page {
   animation: borderFlow 4.2s linear infinite;
 }
 
-.sim-shell > * {
+.sim-shell>* {
   position: relative;
   z-index: 1;
 }
@@ -649,9 +647,12 @@ output {
 
 /* Motion effects used by the neon frame, button sheen, and orbit lines. */
 @keyframes orbitPulse {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: drop-shadow(0 0 16px var(--shadow-pink)) drop-shadow(0 0 42px rgba(255, 47, 184, 0.42));
   }
+
   50% {
     filter: drop-shadow(0 0 24px var(--shadow-pink)) drop-shadow(0 0 68px rgba(255, 47, 184, 0.58));
   }
@@ -661,6 +662,7 @@ output {
   0% {
     background-position: 0% 50%;
   }
+
   100% {
     background-position: 260% 50%;
   }
@@ -670,6 +672,7 @@ output {
   0% {
     transform: translate(-50%, -50%) rotate(-18deg) scale(0.98);
   }
+
   100% {
     transform: translate(-50%, -50%) rotate(-10deg) scale(1.04);
   }
@@ -679,6 +682,7 @@ output {
   0% {
     transform: translate(-50%, -50%) rotate(21deg) scale(1.02);
   }
+
   100% {
     transform: translate(-50%, -50%) rotate(29deg) scale(0.98);
   }
@@ -688,7 +692,9 @@ output {
   0% {
     transform: translateX(-110%);
   }
-  48%, 100% {
+
+  48%,
+  100% {
     transform: translateX(110%);
   }
 }
@@ -699,6 +705,7 @@ output {
     transform: translateY(18px) scale(0.985);
     filter: blur(10px);
   }
+
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -727,6 +734,7 @@ output {
 }
 
 @media (max-width: 980px) {
+
   .control-strip,
   .metrics-grid,
   .server-load-grid,
