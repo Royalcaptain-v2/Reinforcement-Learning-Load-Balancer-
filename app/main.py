@@ -19,7 +19,7 @@ from loadbalancer.traffic import generate_traffic
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
-STATIC_DIR = PROJECT_ROOT / "static"
+STATIC_DIR = PROJECT_ROOT / "public" / "static"
 MODEL_PATH = PROJECT_ROOT / "models" / "ppo_load_balancer"
 
 app = FastAPI(title="Reinforcement Learning Load Balancer")

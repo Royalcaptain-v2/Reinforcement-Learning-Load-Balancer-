@@ -8,3 +8,4 @@ uvicorn.err
 .frontend_port
 .pytest_cache/
 .mypy_cache/
+.vercel/

@@ -6,27 +6,30 @@ A FastAPI web app for simulating server traffic routing with PPO reinforcement l
 
 ```text
 Project-LoadBalancer/
-├── app/                    # FastAPI application entry point
-│   └── main.py
-├── loadbalancer/           # Core simulation package
-│   ├── algorithms.py       # Round Robin and Least Connections
-│   ├── gym_env.py          # Gymnasium wrapper for PPO
-│   ├── rl_env.py           # RL environment and reward logic
-│   ├── server.py           # Server model
-│   └── traffic.py          # Traffic generation helpers
-├── static/                 # Frontend files served by FastAPI
-│   ├── index.html
-│   ├── styles.css
-│   └── app.js
-├── models/                 # Trained PPO model
-│   └── ppo_load_balancer.zip
-├── scripts/                # Command-line training/evaluation scripts
-│   ├── train_ppo.py
-│   └── evaluate_ppo.py
-├── tests/                  # Local test/demo scripts
-├── docs/                   # Project documentation assets
-├── requirements.txt        # Python dependencies
-└── render.yaml             # Render deployment config
+|-- app/                    # FastAPI application
+|   |-- main.py             # Local app entrypoint
+|   `-- index.py            # Vercel entrypoint
+|-- loadbalancer/           # Core simulation package
+|   |-- algorithms.py       # Round Robin and Least Connections
+|   |-- gym_env.py          # Gymnasium wrapper for PPO
+|   |-- rl_env.py           # RL environment and reward logic
+|   |-- server.py           # Server model
+|   `-- traffic.py          # Traffic generation helpers
+|-- public/
+|   `-- static/             # Frontend files served on Vercel and locally
+|       |-- index.html
+|       |-- styles.css
+|       `-- app.js
+|-- models/                 # Trained PPO model
+|   `-- ppo_load_balancer.zip
+|-- scripts/                # Training/evaluation scripts
+|   |-- train_ppo.py
+|   `-- evaluate_ppo.py
+|-- tests/                  # Local demo scripts
+|-- docs/                   # Project documentation assets
+|-- requirements.txt        # Python dependencies
+|-- vercel.json             # Vercel deployment config
+`-- .python-version         # Python version for Vercel
 ```
 
 The root-level `server.py`, `load_balancer.py`, `rl_env.py`, `gym_env.py`, and `trafficGenerator.py` files are compatibility wrappers for older imports. New code should import from the `loadbalancer` package.
@@ -52,5 +55,4 @@ The trained model is saved to `models/ppo_load_balancer.zip`.
 ```powershell
 python scripts/evaluate_ppo.py
 ```
-
 
