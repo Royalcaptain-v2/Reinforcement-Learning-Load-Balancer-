@@ -19,11 +19,14 @@ from loadbalancer.traffic import generate_traffic
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+PUBLIC_INDEX = PROJECT_ROOT / "public" / "index.html"
 STATIC_DIR = PROJECT_ROOT / "public" / "static"
 MODEL_PATH = PROJECT_ROOT / "models" / "ppo_load_balancer"
 
 app = FastAPI(title="Reinforcement Learning Load Balancer")
-app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+if STATIC_DIR.exists():
+    app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 class ServerInput(BaseModel):
@@ -151,7 +154,7 @@ def simulate_least_connections(server_inputs, traffic):
 
 @app.get("/")
 def index():
-    return FileResponse(STATIC_DIR / "index.html")
+    return FileResponse(PUBLIC_INDEX)
 
 
 @app.post("/api/simulate")

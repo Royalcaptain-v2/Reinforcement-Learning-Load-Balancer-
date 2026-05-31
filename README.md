@@ -6,18 +6,19 @@ A FastAPI web app for simulating server traffic routing with PPO reinforcement l
 
 ```text
 Project-LoadBalancer/
+|-- api/
+|   `-- index.py            # Vercel Python Function entrypoint
 |-- app/                    # FastAPI application
-|   |-- main.py             # Local app entrypoint
-|   `-- index.py            # Vercel entrypoint
+|   `-- main.py             # Local app entrypoint
 |-- loadbalancer/           # Core simulation package
 |   |-- algorithms.py       # Round Robin and Least Connections
 |   |-- gym_env.py          # Gymnasium wrapper for PPO
 |   |-- rl_env.py           # RL environment and reward logic
 |   |-- server.py           # Server model
 |   `-- traffic.py          # Traffic generation helpers
-|-- public/
-|   `-- static/             # Frontend files served on Vercel and locally
-|       |-- index.html
+|-- public/                 # Frontend files served by Vercel
+|   |-- index.html
+|   `-- static/
 |       |-- styles.css
 |       `-- app.js
 |-- models/                 # Trained PPO model
@@ -56,3 +57,13 @@ The trained model is saved to `models/ppo_load_balancer.zip`.
 python scripts/evaluate_ppo.py
 ```
 
+## Deploy On Vercel
+
+Vercel serves the homepage from `public/index.html`. API requests under `/api/*` are routed to the FastAPI app through `api/index.py`.
+
+1. Push this repository to GitHub.
+2. Import the repository in Vercel.
+3. Keep the framework preset as Other.
+4. Keep the root directory as `./`.
+5. Leave Build Command and Output Directory blank.
+6. Deploy.
