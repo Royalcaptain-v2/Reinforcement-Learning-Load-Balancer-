@@ -1,22 +1,20 @@
 # Reinforcement Learning Load Balancer
 
-A FastAPI web app for simulating server traffic routing with PPO reinforcement learning, Round Robin, and Least Connections load-balancing algorithms.
+A FastAPI web app with a neon frontend for simulating server traffic routing with PPO reinforcement learning, Round Robin, and Least Connections load-balancing algorithms.
 
 ## Project Structure
 
 ```text
 Project-LoadBalancer/
-|-- api/
-|   `-- index.py            # Vercel Python Function entrypoint
 |-- app/                    # FastAPI application
-|   `-- main.py             # Local app entrypoint
+|   `-- main.py
 |-- loadbalancer/           # Core simulation package
 |   |-- algorithms.py       # Round Robin and Least Connections
 |   |-- gym_env.py          # Gymnasium wrapper for PPO
 |   |-- rl_env.py           # RL environment and reward logic
 |   |-- server.py           # Server model
 |   `-- traffic.py          # Traffic generation helpers
-|-- public/                 # Frontend files served by Vercel
+|-- public/                 # Frontend served by FastAPI
 |   |-- index.html
 |   `-- static/
 |       |-- styles.css
@@ -24,46 +22,11 @@ Project-LoadBalancer/
 |-- models/                 # Trained PPO model
 |   `-- ppo_load_balancer.zip
 |-- scripts/                # Training/evaluation scripts
-|   |-- train_ppo.py
-|   `-- evaluate_ppo.py
 |-- tests/                  # Local demo scripts
 |-- docs/                   # Project documentation assets
+|-- render.yaml             # Render deployment config
 |-- requirements.txt        # Python dependencies
-|-- vercel.json             # Vercel deployment config
-`-- .python-version         # Python version for Vercel
+`-- .python-version         # Python version
 ```
 
-The root-level `server.py`, `load_balancer.py`, `rl_env.py`, `gym_env.py`, and `trafficGenerator.py` files are compatibility wrappers for older imports. New code should import from the `loadbalancer` package.
 
-## Run Locally
-
-```powershell
-python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-```
-
-Open `http://127.0.0.1:8000`.
-
-## Train PPO
-
-```powershell
-python scripts/train_ppo.py
-```
-
-The trained model is saved to `models/ppo_load_balancer.zip`.
-
-## Evaluate PPO
-
-```powershell
-python scripts/evaluate_ppo.py
-```
-
-## Deploy On Vercel
-
-Vercel serves the homepage from `public/index.html`. API requests under `/api/*` are routed to the FastAPI app through `api/index.py`.
-
-1. Push this repository to GitHub.
-2. Import the repository in Vercel.
-3. Keep the framework preset as Other.
-4. Keep the root directory as `./`.
-5. Leave Build Command and Output Directory blank.
-6. Deploy.

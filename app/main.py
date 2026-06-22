@@ -157,6 +157,11 @@ def index():
     return FileResponse(PUBLIC_INDEX)
 
 
+@app.get("/health")
+def health():
+    return {"status": "ok"}
+
+
 @app.post("/api/simulate")
 def simulate(request: SimulationRequest):
     server_inputs = request.servers or default_servers()
