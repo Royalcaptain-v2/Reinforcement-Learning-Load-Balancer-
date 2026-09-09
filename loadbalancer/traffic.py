@@ -1,6 +1,5 @@
 import random 
-import time
-import sys
+
 def generate_traffic():
     #list to store requests 
     traffic = []
@@ -17,7 +16,7 @@ def generate_traffic():
     #variable to stimulate spikes into our requests 
     spike_mutiplier = 3 
 
-    #30% of the time , traffic spikes and remains normal for 70% of the time 
+    #70% of the time , traffic spikes and remains normal for 30% of the time 
     spike_chance =0.7 
 
 
@@ -39,24 +38,3 @@ def generate_traffic():
             })
         
     return traffic
-
-def slow_print(text, delay=0.05):
-    for ch in text:
-        sys.stdout.write(ch)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()
-
-
-# print("")
-# print("")
-# time.sleep(5)
-# slow_print("=======Generating Traffic=======")
-# time.sleep(5)
-# GREEN = "\033[92m"
-# RESET = "\033[0m"
-# traffic = generate_traffic()
-# for req in traffic:
-    # slow_print(f"Request {req['id']} arrives at time T = {req['arrival_time']} ")
-#     time.sleep(1)
-
