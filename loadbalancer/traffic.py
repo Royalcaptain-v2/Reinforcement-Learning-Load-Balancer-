@@ -39,5 +39,3 @@ def generate_traffic():
             })
         
     return traffic
-
-
