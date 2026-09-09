@@ -1,6 +1,5 @@
 import random 
-import time
-import sys
+
 def generate_traffic():
     #list to store requests 
     traffic = []
