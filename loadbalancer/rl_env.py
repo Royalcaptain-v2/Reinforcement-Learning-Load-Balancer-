@@ -34,6 +34,7 @@ class LoadBalancingEnv:
 
         self.current_request_index = 0
 
+    #resets the simulation to initial state including servers , traffic and all info related
     def reset(self):
         self.current_request_index = 0
 
@@ -57,6 +58,10 @@ class LoadBalancingEnv:
 
         return state
 
+
+    # Used only during training when randomization is enabled.
+    # It randomly makes servers fast/slow and active/inactive, 
+    # while ensuring at least one server remains active.
     def _randomize_server_conditions(self):
         active_count = 0
 
@@ -70,6 +75,7 @@ class LoadBalancingEnv:
         if active_count == 0:
             self.rng.choice(self.servers).is_active = True
 
+    #prepares the information of server states to be fed into PPO 
     def _get_state(self):
         state = []
 
@@ -102,6 +108,15 @@ class LoadBalancingEnv:
 
         return state
 
+    #Handles a single PPO decision 
+    #action means PPO selected a server 
+    #sends the current request to that server;
+    # gets its response time;
+    # checks what the best possible server choice would have been;
+    # gives PPO a reward or penalty;
+    # moves to the next request;
+    # returns the new server state;
+    # says whether all traffic requests are finished.
     def step(self, action):
         done = False
         info = {"response_time": None}
